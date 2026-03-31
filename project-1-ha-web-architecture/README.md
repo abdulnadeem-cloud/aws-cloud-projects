@@ -146,121 +146,121 @@ echo "Hello from $(hostname)" > /var/www/html/index.html
   <tr>
     <td align="center">
       <b>🌐 VPC Created</b><br/><br/>
-      <img src="screenshots/vpc.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/vpc.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🌐 VPC Overview</b><br/><br/>
-      <img src="screenshots/vpc_full.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/vpc_full.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🔀 Subnets (Public + Private across 2 AZs)</b><br/><br/>
-      <img src="screenshots/subnets.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/subnets.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🌍 Internet Gateway</b><br/><br/>
-      <img src="screenshots/igw.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/igw.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🗺️ Route Tables Public</b><br/><br/>
-      <img src="screenshots/route-tables_public.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/route-tables_public.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🗺️ Route Tables Private</b><br/><br/>
-      <img src="screenshots/route-tables_private.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/route-tables_private.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🔒 Security Groups for ALB</b><br/><br/>
-      <img src="screenshots/security-groups_alb.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/security-groups_alb.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🔒 Security Groups for Baston Host EC2</b><br/><br/>
-      <img src="screenshots/security-groups_baston.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/security-groups_baston.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🔒 Security Groups for Private EC2</b><br/><br/>
-      <img src="screenshots/security-groups_privateEC2.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/security-groups_privateEC2.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🖥️ Bastion Host</b><br/><br/>
-      <img src="screenshots/bastion-host_ec2.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/bastion-host_ec2.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🔐 Private EC2 (No Public IP)</b><br/><br/>
-      <img src="screenshots/ec2-private.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/ec2-private.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🎯 Target Group</b><br/><br/>
-      <img src="screenshots/target-group.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/target-group.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>⚖️ Application Load Balancer</b><br/><br/>
-      <img src="screenshots/alb.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/alb.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>📋 Launch Template</b><br/><br/>
-      <img src="screenshots/launch-template.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/launch-template.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>📈 Auto Scaling Group (2 instances across AZs)</b><br/><br/>
-      <img src="screenshots/asg.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/asg.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
    <tr>
     <td align="center">
       <b>🗄️ NAT Gateway</b><br/><br/>
-      <img src="screenshots/NatGatway.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/NatGatway.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🗄️ RDS Database</b><br/><br/>
-      <img src="screenshots/RDS.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/RDS.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>📊 CloudWatch Alarm</b><br/><br/>
-      <img src="screenshots/cloudwatch_alarm_a.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/cloudwatch_alarm_a.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🌐 Outputs & Execution Results </b><br/><br/>
-      <img src="screenshots/alb-output.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/alb-output.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>🔄 Outputs & Execution Results </b><br/><br/>
-      <img src="screenshots/load-balancing.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+      <img src="screenshots/load-balancing.png" width="90%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
 </table>
