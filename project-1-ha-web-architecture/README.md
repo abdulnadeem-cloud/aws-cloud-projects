@@ -1,51 +1,77 @@
+<div align="center">
+
 # 🏗️ High Availability Web Architecture on AWS
 
-A production-grade, highly available web infrastructure built on AWS — designed for scalability, security, and fault tolerance.
+### A production-grade, highly available web infrastructure built on AWS
+#### Designed for Scalability · Security · Fault Tolerance
 
-![AWS](https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazon-aws)
-![EC2](https://img.shields.io/badge/EC2-t2.micro-yellow?style=for-the-badge&logo=amazon-aws)
-![RDS](https://img.shields.io/badge/RDS-MySQL-blue?style=for-the-badge&logo=mysql)
-![Status](https://img.shields.io/badge/Status-Completed-green?style=for-the-badge)
+<br/>
+
+![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![EC2](https://img.shields.io/badge/EC2-t2.micro-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![RDS](https://img.shields.io/badge/RDS-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![VPC](https://img.shields.io/badge/VPC-Networking-8C4FFF?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![ALB](https://img.shields.io/badge/ALB-Load%20Balancer-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-2ea44f?style=for-the-badge)
+![Region](https://img.shields.io/badge/Region-ap--south--1-blue?style=for-the-badge&logo=amazon-aws&logoColor=white)
+
+<br/>
+
+---
+
+### 🚀 Built With
+
+| Service | Purpose | Type |
+|:---:|:---:|:---:|
+| ![](https://img.shields.io/badge/VPC-Network%20Isolation-8C4FFF?style=flat-square&logo=amazon-aws&logoColor=white) | Private Network | Networking |
+| ![](https://img.shields.io/badge/EC2-Web%20Servers-FF9900?style=flat-square&logo=amazon-aws&logoColor=white) | Application Layer | Compute |
+| ![](https://img.shields.io/badge/ALB-Traffic%20Distribution-FF9900?style=flat-square&logo=amazon-aws&logoColor=white) | Load Balancing | Networking |
+| ![](https://img.shields.io/badge/ASG-Auto%20Scaling-FF9900?style=flat-square&logo=amazon-aws&logoColor=white) | High Availability | Compute |
+| ![](https://img.shields.io/badge/RDS-MySQL%20Database-4479A1?style=flat-square&logo=mysql&logoColor=white) | Data Layer | Database |
+| ![](https://img.shields.io/badge/CloudWatch-Monitoring-FF4F8B?style=flat-square&logo=amazon-aws&logoColor=white) | Alerts & Metrics | Monitoring |
+
+</div>
 
 ---
 
 ## 📐 Architecture Overview
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        🌐  Internet                         │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+┌──────────────────────────────▼──────────────────────────────┐
+│                ⚖️  Application Load Balancer                │
+│                  (Internet-facing · HTTP:80)                 │
+│            public-subnet-1    │    public-subnet-2           │
+└───────────────┬───────────────────────────────┬─────────────┘
+                │                               │
+┌───────────────▼─────────────┐   ┌─────────────▼────────────┐
+│      🖥️  EC2 Instance 1     │   │     🖥️  EC2 Instance 2   │
+│        (ap-south-1a)        │   │       (ap-south-1b)       │
+│       private-subnet-1      │   │      private-subnet-2     │
+└───────────────┬─────────────┘   └─────────────┬────────────┘
+                │                               │
+                └───────────────┬───────────────┘
+                                │
+┌───────────────────────────────▼─────────────────────────────┐
+│                    📈  Auto Scaling Group                   │
+│               Min : 1  │  Desired : 1  │  Max : 2           │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+┌──────────────────────────────▼──────────────────────────────┐
+│                       🔀  NAT Gateway                       │
+│                      (public-subnet-1)                      │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+┌──────────────────────────────▼──────────────────────────────┐
+│                  🗄️  RDS MySQL  (Single-AZ)                 │
+│                    private subnet · ha-db                   │
+└─────────────────────────────────────────────────────────────┘
+```
 
-```
-                        ┌─────────────────────────────────────┐
-                        │              Internet                │
-                        └──────────────┬──────────────────────┘
-                                       │
-                        ┌──────────────▼──────────────────────┐
-                        │     Application Load Balancer        │
-                        │     (Internet-facing, HTTP:80)       │
-                        │  public-subnet-1 | public-subnet-2   │
-                        └──────┬────────────────┬─────────────┘
-                               │                │
-               ┌───────────────▼──┐        ┌───▼──────────────────┐
-               │   EC2 Instance 1 │        │   EC2 Instance 2      │
-               │  (ap-south-1a)   │        │  (ap-south-1b)        │
-               │  private-subnet-1│        │  private-subnet-2     │
-               └───────────────┬──┘        └───┬──────────────────┘
-                               │                │
-                        ┌──────▼────────────────▼──────────────┐
-                        │         Auto Scaling Group            │
-                        │    Min: 1 | Desired: 1 | Max: 2      │
-                        └──────────────┬───────────────────────┘
-                                       │
-                        ┌──────────────▼──────────────────────┐
-                        │         NAT Gateway                  │
-                        │      (public-subnet-1)               │
-                        └──────────────┬──────────────────────┘
-                                       │
-                        ┌──────────────▼──────────────────────┐
-                        │       RDS MySQL (Single-AZ)          │
-                        │       private subnet (ha-db)         │
-                        └─────────────────────────────────────┘
-```
 
 ---
-
 ## 🚀 Services Used
 
 | Service | Purpose |
@@ -90,7 +116,7 @@ A production-grade, highly available web infrastructure built on AWS — designe
 ## ⚙️ Auto Scaling Configuration
 
 ```
-Desired Capacity : 1
+Desired Capacity : 2
 Minimum          : 1
 Maximum          : 2
 Scaling Policy   : Target Tracking (CPU > 50%)
@@ -116,51 +142,122 @@ echo "Hello from $(hostname)" > /var/www/html/index.html
 
 ## 📸 Screenshots
 
-### VPC Created
-![VPC](screenshots/vpc.png)
-
-### Subnets (Public + Private across 2 AZs)
-![Subnets](screenshots/subnets.png)
-
-### Internet Gateway
-![IGW](screenshots/igw.png)
-
-### Route Tables
-![Route Tables](screenshots/route-tables.png)
-
-### Security Groups
-![Security Groups](screenshots/security-groups.png)
-
-### Bastion Host
-![Bastion](screenshots/bastion.png)
-
-### Private EC2 (No Public IP)
-![EC2 Private](screenshots/ec2-private.png)
-
-### Launch Template with User Data
-![Launch Template](screenshots/launch-template.png)
-
-### Target Group
-![Target Group](screenshots/target-group.png)
-
-### Application Load Balancer
-![ALB](screenshots/alb.png)
-
-### ALB Output in Browser
-![ALB Output](screenshots/alb-output.png)
-
-### Auto Scaling Group (2 instances across AZs)
-![ASG](screenshots/asg.png)
-
-### Load Balancing in Action
-![Load Balancing](screenshots/load-balancing.png)
-
-### RDS Database
-![RDS](screenshots/rds.png)
-
-### CloudWatch Alarm
-![CloudWatch](screenshots/cloudwatch.png)
-
+<table>
+  <tr>
+    <td align="center">
+      <b>🌐 VPC Created</b><br/><br/>
+      <img src="screenshots/vpc.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🌐 VPC Overview</b><br/><br/>
+      <img src="screenshots/vpc_full.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🔀 Subnets (Public + Private across 2 AZs)</b><br/><br/>
+      <img src="screenshots/subnets.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🌍 Internet Gateway</b><br/><br/>
+      <img src="screenshots/igw.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🗺️ Route Tables Public</b><br/><br/>
+      <img src="screenshots/route-tables_public.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🗺️ Route Tables Private</b><br/><br/>
+      <img src="screenshots/route-tables_private.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🔒 Security Groups for ALB</b><br/><br/>
+      <img src="screenshots/security-groups_alb.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🔒 Security Groups for Baston Host EC2</b><br/><br/>
+      <img src="screenshots/security-groups_baston.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🔒 Security Groups for Private EC2</b><br/><br/>
+      <img src="screenshots/security-groups_privateEC2.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🖥️ Bastion Host</b><br/><br/>
+      <img src="screenshots/bastion-host_ec2.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🔐 Private EC2 (No Public IP)</b><br/><br/>
+      <img src="screenshots/ec2-private.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🎯 Target Group</b><br/><br/>
+      <img src="screenshots/target-group.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>⚖️ Application Load Balancer</b><br/><br/>
+      <img src="screenshots/alb.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>📋 Launch Template</b><br/><br/>
+      <img src="screenshots/launch-template.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>📈 Auto Scaling Group (2 instances across AZs)</b><br/><br/>
+      <img src="screenshots/asg.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🗄️ RDS Database</b><br/><br/>
+      <img src="screenshots/RDS.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>📊 CloudWatch Alarm</b><br/><br/>
+      <img src="screenshots/cloudwatch_alarm_a.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🌐 Outputs & Execution Results </b><br/><br/>
+      <img src="screenshots/alb-output.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🔄 Outputs & Execution Results </b><br/><br/>
+      <img src="screenshots/load-balancing.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
+</table>
 ---
 
 ## 🔥 How This Handles Scale
