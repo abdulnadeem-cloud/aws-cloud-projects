@@ -233,6 +233,12 @@ echo "Hello from $(hostname)" > /var/www/html/index.html
       <img src="screenshots/asg.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
     </td>
   </tr>
+   <tr>
+    <td align="center">
+      <b>🗄️ NAT Gateway</b><br/><br/>
+      <img src="screenshots/NatGatway.png" width="70%" style="border: 3px solid #2563EB; border-radius: 8px;"/>
+    </td>
+  </tr>
   <tr>
     <td align="center">
       <b>🗄️ RDS Database</b><br/><br/>
