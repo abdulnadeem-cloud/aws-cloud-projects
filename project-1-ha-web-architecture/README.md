@@ -125,6 +125,7 @@ Health Check     : ELB Health Check
 
 ---
 
+
 ## 📦 EC2 User Data Script
 
 Every EC2 instance launched by ASG automatically runs this script:
@@ -139,6 +140,48 @@ echo "Hello from $(hostname)" > /var/www/html/index.html
 ```
 
 ---
+
+## ⚙️Deployment Steps (Reproducible Setup)
+Step 1: Create VPC
+
+CIDR: 10.0.0.0/16
+
+Enable DNS hostnames
+
+Step 2: Create Subnets
+2 Public + 2 Private across different AZs
+Step 3: Internet Access
+Attach Internet Gateway
+Public route → 0.0.0.0/0 → IGW
+Step 4: NAT Gateway
+Deploy in public subnet
+Private route → 0.0.0.0/0 → NAT
+Step 5: Security Groups
+ALB → HTTP (80) from internet
+EC2 → HTTP from ALB SG
+Bastion → SSH from your IP
+RDS → MySQL (3306) from EC2 SG
+Step 6: Bastion Host
+Deploy in public subnet for SSH access
+Step 7: Launch Template
+Amazon Linux
+Add user data script
+Step 8: Target Group
+Health check: HTTP
+Step 9: Application Load Balancer
+Internet-facing
+Attach public subnets
+Step 10: Auto Scaling Group
+Min: 1 | Max: 2
+Attach to ALB
+Step 11: RDS Setup
+MySQL in private subnet
+Disable public access
+Step 12: CloudWatch Alarm
+CPU threshold > 70%
+Step 13: Testing
+Access ALB DNS
+Refresh → observe load balancing
 
 ## 📸 Screenshots
 
