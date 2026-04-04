@@ -1,0 +1,2 @@
+Hello AWS! Testing my serverless system.
+Date: 29/3/2026
