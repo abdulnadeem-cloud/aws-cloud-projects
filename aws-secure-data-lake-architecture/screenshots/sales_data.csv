@@ -1,0 +1,9 @@
+id,product,amount,region,date
+1,Laptop,1200,North,2024-01-15
+2,Mouse,25,South,2024-01-15
+3,Keyboard,75,East,2024-01-16
+4,Monitor,350,West,2024-01-16
+5,Headphones,80,North,2024-01-17
+6,Webcam,60,South,2024-01-17
+7,Desk Chair,200,East,2024-01-18
+8,USB Hub,40,West,2024-01-18
