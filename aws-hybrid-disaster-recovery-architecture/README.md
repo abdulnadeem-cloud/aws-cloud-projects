@@ -164,11 +164,82 @@ cat /home/ec2-user/data/file1.txt | sudo tee -a /var/www/html/index.html
 
 ## 📸 Screenshots (Add these)
 
+🌐 Networking Setup (VPC)
+
+DR-VPC
+|                                   |
+| --------------------------------- |
+| ![DR-VPC](screenshots/DR-VPC.png) |
+| *DR VPC configuration*            |
+
+|                             |
+| --------------------------- |
+| ![IGW](screenshots/IGW.png) |
+| *Internet Gateway attached* |
+
+|                                                 |
+| ----------------------------------------------- |
+| ![public-subnet](screenshots/public-subnet.png) |
+| *Public subnet created*                         |
+
+|                                                                 |
+| --------------------------------------------------------------- |
+| ![Route-table-added-IGW](screenshots/Route-table-added-IGW.png) |
+| *Route added for internet access (0.0.0.0/0)*                   |
 
 
 * EC2 Instances (Primary + DR)
+
+  🖥️ Primary EC2 Setup
+
+primary-ec2
+|                                             |
+| ------------------------------------------- |
+| ![primary-ec2](screenshots/primary-ec2.png) |
+| *Primary EC2 instance running*              |
+
+🆘 Disaster Recovery (DR) Environment
+|                                   |
+| --------------------------------- |
+| ![dr-ec2](screenshots/dr-ec2.png) |
+| *DR EC2 instance setup*           |
+
+|                                                       |
+| ----------------------------------------------------- |
+| ![primary-ec2-file](screenshots/primary-ec2-file.png) |
+| *File/data inside primary EC2*                        |
+
+* Application running on Primary
+|                                                                       |
+| --------------------------------------------------------------------- |
+| ![Primary-public-ip-output](screenshots/Primary-public-ip-output.png) |
+| *Public IP output for access*                                         |
+
+|                                   |
+| --------------------------------- |
+| ![dr-ec2](screenshots/dr-ec2.png) |
+| *DR EC2 instance setup*           |
+
+📦 S3 Backup Storage
+
 * S3 Bucket with uploaded files
+|                                         |
+| --------------------------------------- |
+| ![s3-bucket](screenshots/s3-bucket.png) |
+| *S3 bucket created for backup*          |
+
+|                                                                         |
+| ----------------------------------------------------------------------- |
+| ![S3-Bucket-file-Data-in-s3](screenshots/S3-Bucket-file-Data-in-s3.png) |
+| *Data successfully stored in S3*                                        |
+
 * `aws s3 sync` execution
+|                                                     |
+| --------------------------------------------------- |
+| ![sync-data-to-s3](screenshots/sync-data-to-s3.png) |
+| *Data sync from EC2 to S3 triggered via script*     |
+
+
 * Cron job configuration
 |                                              |
 | -------------------------------------------- |
@@ -176,9 +247,30 @@ cat /home/ec2-user/data/file1.txt | sudo tee -a /var/www/html/index.html
 | *Cron job configured for periodic execution* |
 
 * DR data restoration
-* Application running on Primary
-* Application running on DR
-* Disaster simulation (Primary stopped)
+|                                                                       |
+| --------------------------------------------------------------------- |
+| ![DR-EC2-pull-data-from-s3](screenshots/DR-EC2-pull-data-from-s3.png) |
+| *Pulling data from S3 to DR EC2*                                      |
+
+|                                     |
+| ----------------------------------- |
+| ![DR-DATA](screenshots/DR-DATA.png) |
+| *Data available in DR server*       |
+
+
+
+* 🧪 DR Testing & Validation (After Primary server stopped)
+
+|                                                         |
+| ------------------------------------------------------- |
+| ![file1-primary-ec2](screenshots/file1-primary-ec2.png) |
+| *Test file created in primary EC2*                      |
+
+|                                                   |
+| ------------------------------------------------- |
+| ![Test-DR-SERVER](screenshots/Test-DR-SERVER.png) |
+| *DR server validation after failover*             |
+
 
 ---
 
